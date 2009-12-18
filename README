@@ -1,0 +1,14 @@
+方便選擇無線網路
+目前只支援未加密連線
+
+請編譯或安裝 php 直譯器 (Debian/Ubuntu : # apt-get install php5-cli)
+
+#### 舊的作法 ####
+# iwlist ath0 scanning
+# iwconfig ath0 essid xxx ap 00:00:00:00:00:00
+# dhclient ath0
+
+### ToDo ####
+更新使用者介面 (CUI : Console User Interface)
+可以讓一般加密可以在選擇後讓你輸入密碼
+
