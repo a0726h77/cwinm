@@ -64,6 +64,12 @@ class ap_node_list
 	public static function cmp($n1, $n2)
 ############################################################################
 	{
+		if($n1->quality == $n2->quality)
+		{
+			return 0;
+		}
+		return ($n1->quality > $n2->quality) ? 1 : 0;
+/*
 		if($n1->encryption == "off" && $n2->encryption == "on")
 		{
 			return 1;
@@ -76,6 +82,7 @@ class ap_node_list
 			}
 			return ($n1->quality > $n2->quality) ? 1 : 0;
 		}
+*/
 	}
 
 ############################################################################
@@ -102,7 +109,14 @@ class ap_node_list
 		$this->sort();
 		foreach($this->node_arr as $n)
 		{
-			$node["essid \"$n->essid\" ap $n->mac"] = sprintf("%{$e_width}s - [%{$q_width}d/%{$q_all_width}d]...%3s", $n->essid, $n->quality, $n->quality_all, $n->encryption);
+			if($n->encryption == "on")
+			{
+				$node["essid \"$n->essid\" ap $n->mac key "] = sprintf("%{$e_width}s - [%{$q_width}d/%{$q_all_width}d]...%3s", $n->essid, $n->quality, $n->quality_all, $n->encryption);
+			}
+			else
+			{
+				$node["essid \"$n->essid\" ap $n->mac"] = sprintf("%{$e_width}s - [%{$q_width}d/%{$q_all_width}d]...%3s", $n->essid, $n->quality, $n->quality_all, $n->encryption);
+			}
 //			printf("%{$e_width}s - [%{$q_width}d/%{$q_all_width}d]...%3s\n", $n->essid, $n->quality, $n->quality_all, $n->encryption);
 		}
 	

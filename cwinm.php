@@ -154,6 +154,12 @@ ncurses_end();
 
 if($result)
 {
+	if(preg_match("/key\ $/", $result))
+	{
+		echo "Enter AP Password : ";
+		$ap_pd = trim(fgets(STDIN));
+		$result = $result."s:".$ap_pd;
+	}
 	echo "Your choice : $result\n";
 	echo "To Connect ? [Y/n] ";
 	$option = trim(fgetc(STDIN));
